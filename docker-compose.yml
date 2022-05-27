@@ -1,0 +1,15 @@
+version: "3.1"
+
+services:
+  database:
+    image: postgres:14.3-alpine
+    container_name: wopr.weston.database
+    volumes:
+      - ./docker/initdb.d:/docker-entrypoint-initdb.d
+    environment:
+      POSTGRES_PASSWORD: secret
+      APP_DB_NAME: sample_db
+      APP_DB_USER: docker
+      APP_DB_PASS: secret
+    ports:
+      - "5008:5432"
